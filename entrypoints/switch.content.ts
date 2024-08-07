@@ -1,6 +1,7 @@
+import { configStorage } from "~utils/config";
 import { GOOGLE_MEET_MATCH, GOOGLE_MEET_SELECTOR } from "~utils/constants";
 import { toggleClass, waitFor } from "~utils/dom";
-import { getGlobalValue, setGlobalValue } from "~utils/globals";
+import { setGlobalValue } from "~utils/globals";
 
 const CLASS_NAME = {
 	ACTIVE: "eBlXUe-scr2fc-OWXEXe-gk6SMd",
@@ -11,7 +12,9 @@ export default defineContentScript({
 	runAt: "document_idle",
 	matches: [GOOGLE_MEET_MATCH],
 	async main() {
-		const enableByDefault = getGlobalValue("enabled");
+		const { enableByDefault } = await configStorage.getValue();
+
+		setGlobalValue("enabled", enableByDefault);
 
 		const parser = new DOMParser();
 		const wrapper = await waitFor(GOOGLE_MEET_SELECTOR.COMMENT_SWITCHES);
