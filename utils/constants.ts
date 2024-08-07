@@ -9,4 +9,5 @@ export const IDENTITY_ATTRIBUTE = {
 
 export const GOOGLE_MEET_SELECTOR = {
 	COMMENT_SWITCHES: '[jscontroller="gBurof"]',
+	COMMENT_TOGGLE_BUTTON: '[jsname=A5il2e][data-panel-id="2"]',
 };
