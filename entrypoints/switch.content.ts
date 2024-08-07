@@ -1,7 +1,7 @@
-import { configStorage } from "~utils/config";
-import { GOOGLE_MEET_MATCH, GOOGLE_MEET_SELECTOR } from "~utils/constants";
-import { toggleClass, waitFor } from "~utils/dom";
-import { setGlobalValue } from "~utils/globals";
+import { configStorage } from "~/utils/config";
+import { GOOGLE_MEET_MATCH, GOOGLE_MEET_SELECTOR } from "~/utils/constants";
+import { toggleClass, waitFor } from "~/utils/dom";
+import { setGlobalValue } from "~/utils/globals";
 
 const CLASS_NAME = {
 	ACTIVE: "eBlXUe-scr2fc-OWXEXe-gk6SMd",

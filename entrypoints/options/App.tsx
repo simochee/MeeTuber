@@ -1,6 +1,10 @@
 import { isDeepEqual } from "@antfu/utils";
 import { VarButton, VarCategory, VarToggle, VarUI } from "react-var-ui";
-import { type ConfigSchema, configStorage, initialConfig } from "~utils/config";
+import {
+	type ConfigSchema,
+	configStorage,
+	initialConfig,
+} from "~/utils/config";
 
 export const App = () => {
 	const [pending, setPending] = useState(false);
@@ -8,10 +12,6 @@ export const App = () => {
 	const [values, setValues] = useState<ConfigSchema>(initialConfig);
 
 	const changed = !isDeepEqual(initialValues, values);
-
-	const reset = () => {
-		setValues(initialConfig);
-	};
 
 	const handleSubmit = async (values: ConfigSchema) => {
 		setPending(true);

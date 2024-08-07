@@ -14,4 +14,5 @@ export const initialConfig = v.getDefaults(configSchema);
 
 export const configStorage = storage.defineItem<ConfigSchema>("local:config", {
 	version: 1,
+	fallback: initialConfig,
 });
