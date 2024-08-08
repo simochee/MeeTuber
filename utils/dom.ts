@@ -50,3 +50,22 @@ export const createHiddenElement = <K extends keyof HTMLElementTagNameMap>(
 
 	return element;
 };
+
+/**
+ * 秘匿された要素を取得する
+ */
+export const getHiddenElement = <K extends keyof HTMLElementTagNameMap>(
+	tagName: K,
+) => {
+	const elements = document.getElementsByTagName(tagName);
+
+	for (const element of elements) {
+		if (
+			element.getAttribute(IDENTITY_ATTRIBUTE.NAME) === IDENTITY_ATTRIBUTE.VALUE
+		) {
+			return element;
+		}
+	}
+
+	return null;
+};
