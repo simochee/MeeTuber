@@ -15,6 +15,8 @@ export default defineContentScript({
 			if (!getGlobalValue("enabled")) {
 				return renderScreenShare(canvas, video);
 			}
+
+			throw new TypeError("Not implemented");
 		});
 	},
 });

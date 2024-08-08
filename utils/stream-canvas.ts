@@ -1,11 +1,10 @@
 import { getHiddenElement } from "./dom";
-import { type RendererResult, renderError } from "./renderer";
+import { renderError } from "./renderer";
 
-type OnTickHandlerResult = RendererResult | undefined;
 type OnTickHandler = (
 	canvas: HTMLCanvasElement,
 	options: { video: HTMLVideoElement },
-) => OnTickHandlerResult;
+) => void;
 
 /**
  * ストリーミングを行う画面を描画するクラス
@@ -26,26 +25,18 @@ export class StreamCanvas {
 		if (!canvas || !video || video.videoWidth === 0 || video.videoHeight === 0)
 			return;
 
-		let width = video.videoWidth;
-		let height = video.videoHeight;
+		canvas.width = video.videoWidth;
+		canvas.height = video.videoHeight;
 
 		try {
 			for (const handler of this.onTickHandlers) {
-				const result = handler(canvas, { video });
-
-				if (result) {
-					width = result.width;
-					height = result.height;
-				}
+				handler(canvas, { video });
 			}
 		} catch (err) {
 			console.error(err);
 
-			({ width, height } = renderError(canvas, video, err));
+			renderError(canvas, video);
 		}
-
-		canvas.width = width;
-		canvas.height = height;
 	}
 
 	public onTick(handler: OnTickHandler) {
